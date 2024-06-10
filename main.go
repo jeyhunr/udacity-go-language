@@ -71,13 +71,19 @@ func updateCustomer(updatedCustomer Customer) Customer {
 	return Customer{}
 }
 
-func main() {
+func deleteCustomer(id string) Customer {
 	customers := getCustomers()
-	customer := getCustomer("2")
+	var deletedCustomer Customer
+	for i, customer := range customers {
+		if customer.ID == id {
+			deletedCustomer = customer
+			customers = append(customers[:i], customers[i+1:]...)
+			saveCustomers(customers)
+			break
+		}
+	}
+	return deletedCustomer
+}
 
-	newCustomer := Customer{ID: "12345", Name: "Jeyhun Rahimli", Role: "Software Engineer", Email: "mail@rahimli.net", Phone: "0123456", Contacted: true}
-	fmt.Println(customers)
-	fmt.Println(customer)
-
-	addCustomer(newCustomer)
+func main() {
 }
