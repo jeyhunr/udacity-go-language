@@ -3,7 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
 	"os"
+
+	"github.com/gorilla/mux"
 )
 
 type Customer struct {
@@ -86,4 +89,8 @@ func deleteCustomer(id string) Customer {
 }
 
 func main() {
+	r := mux.NewRouter()
+
+	fmt.Println("Listening on port 3008...")
+	http.ListenAndServe(":3008", r)
 }
