@@ -31,8 +31,20 @@ func getCustomers() []Customer {
 	return customers
 }
 
+func getCustomer(id string) Customer {
+	customers := getCustomers()
+	for _, customer := range customers {
+		if customer.ID == id {
+			return customer
+		}
+	}
+	return Customer{}
+}
+
 func main() {
 	customers := getCustomers()
+	customer := getCustomer("2")
 
 	fmt.Println(customers)
+	fmt.Println(customer)
 }
