@@ -1,0 +1,42 @@
+[
+  {
+    "ID": 1,
+    "Name": "John Doe",
+    "Role": "Manager",
+    "Email": "john.doe@example.com",
+    "Phone": "+1-555-1234",
+    "Contacted": true
+  },
+  {
+    "ID": 2,
+    "Name": "Jane Smith",
+    "Role": "Developer",
+    "Email": "jane.smith@example.com",
+    "Phone": "+1-555-5678",
+    "Contacted": false
+  },
+  {
+    "ID": 3,
+    "Name": "Alice Johnson",
+    "Role": "Designer",
+    "Email": "alice.johnson@example.com",
+    "Phone": "+1-555-8765",
+    "Contacted": true
+  },
+  {
+    "ID": 4,
+    "Name": "Bob Brown",
+    "Role": "Sales",
+    "Email": "bob.brown@example.com",
+    "Phone": "+1-555-4321",
+    "Contacted": false
+  },
+  {
+    "ID": 5,
+    "Name": "Carol White",
+    "Role": "Support",
+    "Email": "carol.white@example.com",
+    "Phone": "+1-555-6789",
+    "Contacted": true
+  }
+]
