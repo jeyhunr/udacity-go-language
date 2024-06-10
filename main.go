@@ -59,6 +59,18 @@ func addCustomer(customer Customer) Customer {
 	return customer
 }
 
+func updateCustomer(updatedCustomer Customer) Customer {
+	customers := getCustomers()
+	for i, customer := range customers {
+		if customer.ID == updatedCustomer.ID {
+			customers[i] = updatedCustomer
+			saveCustomers(customers)
+			return updatedCustomer
+		}
+	}
+	return Customer{}
+}
+
 func main() {
 	customers := getCustomers()
 	customer := getCustomer("2")
