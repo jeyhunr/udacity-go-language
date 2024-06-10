@@ -107,6 +107,18 @@ func main() {
 		json.NewEncoder(w).Encode(customer)
 	}).Methods("GET")
 
+	r.HandleFunc("/customer", func(w http.ResponseWriter, r *http.Request) {
+		var customer Customer
+		if err := json.NewDecoder(r.Body).Decode(&customer); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		addedCustomer := addCustomer(customer)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusCreated)
+		json.NewEncoder(w).Encode(addedCustomer)
+	}).Methods("POST")
+
 	fmt.Println("Listening on port 3008...")
 	http.ListenAndServe(":3008", r)
 }
