@@ -41,10 +41,31 @@ func getCustomer(id string) Customer {
 	return Customer{}
 }
 
+func saveCustomers(customers []Customer) {
+	data, err := json.Marshal(customers)
+	if err != nil {
+		fmt.Println("Error marshalling customers:", err)
+		return
+	}
+	if err := os.WriteFile(customersFile, data, 0644); err != nil {
+		fmt.Println("Error writing file:", err)
+	}
+}
+
+func addCustomer(customer Customer) Customer {
+	customers := getCustomers()
+	customers = append(customers, customer)
+	saveCustomers(customers)
+	return customer
+}
+
 func main() {
 	customers := getCustomers()
 	customer := getCustomer("2")
 
+	newCustomer := Customer{ID: "12345", Name: "Jeyhun Rahimli", Role: "Software Engineer", Email: "mail@rahimli.net", Phone: "0123456", Contacted: true}
 	fmt.Println(customers)
 	fmt.Println(customer)
+
+	addCustomer(newCustomer)
 }
