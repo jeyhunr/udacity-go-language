@@ -91,6 +91,13 @@ func deleteCustomer(id string) Customer {
 func main() {
 	r := mux.NewRouter()
 
+	r.HandleFunc("/customers", func(w http.ResponseWriter, r *http.Request) {
+		customers := getCustomers()
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(customers)
+	}).Methods("GET")
+
 	fmt.Println("Listening on port 3008...")
 	http.ListenAndServe(":3008", r)
 }
