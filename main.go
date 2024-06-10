@@ -141,5 +141,5 @@ func main() {
 	}).Methods("DELETE")
 
 	fmt.Println("Listening on port 3008...")
-	http.ListenAndServe(":3008", r)
+	http.ListenAndServe(":8080", r)
 }
