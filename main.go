@@ -131,6 +131,15 @@ func main() {
 		json.NewEncoder(w).Encode(updatedCustomer)
 	}).Methods("PUT")
 
+	r.HandleFunc("/customer/{ID}", func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+		id := vars["ID"]
+		deletedCustomer := deleteCustomer(id)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		json.NewEncoder(w).Encode(deletedCustomer)
+	}).Methods("DELETE")
+
 	fmt.Println("Listening on port 3008...")
 	http.ListenAndServe(":3008", r)
 }
