@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"encoding/json"
+	"fmt"
+	"os"
+)
 
 type Customer struct {
 	ID        string `json:"id"`
@@ -11,6 +15,24 @@ type Customer struct {
 	Contacted bool   `json:"contacted"`
 }
 
+var customersFile = "./customers.json"
+
+func getCustomers() []Customer {
+	file, err := os.ReadFile(customersFile)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return []Customer{}
+	}
+	var customers []Customer
+	if err := json.Unmarshal(file, &customers); err != nil {
+		fmt.Println("Error unmarshalling file:", err)
+		return []Customer{}
+	}
+	return customers
+}
+
 func main() {
-	fmt.Println("Hello world!")
+	customers := getCustomers()
+
+	fmt.Println(customers)
 }
