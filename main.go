@@ -91,6 +91,11 @@ func deleteCustomer(id string) Customer {
 func main() {
 	r := mux.NewRouter()
 
+	// Serve the index.html file for the root route
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "index.html")
+	}).Methods("GET")
+
 	r.HandleFunc("/customers", func(w http.ResponseWriter, r *http.Request) {
 		customers := getCustomers()
 		w.Header().Set("Content-Type", "application/json")
@@ -140,6 +145,6 @@ func main() {
 		json.NewEncoder(w).Encode(deletedCustomer)
 	}).Methods("DELETE")
 
-	fmt.Println("Listening on port 3008...")
+	fmt.Println("Listening on port 8080...")
 	http.ListenAndServe(":8080", r)
 }
